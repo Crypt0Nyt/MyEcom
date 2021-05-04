@@ -1,36 +1,50 @@
 package Streamliners;
 
-import Streamliners.Model.Product;
-import Streamliners.Model.Variant;
-import Streamliners.Model.VariantsBasedProduct;
-import Streamliners.Model.WeightBasedProduct;
+import Streamliners.Model.*;
+
 
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
+import java.util.Collections;
+
 
 
 public class Main {
     public static void main(String[] args) {
 
-        //      Create Products
-        Product apple = new WeightBasedProduct("Apple","",5,90);
-        Product kiwi = new VariantsBasedProduct("Kiwi","",new ArrayList<>(
+        Product apple = new Product("Apple", "", 0.5f, 100),
+                orange = new Product("Orange", "", 0.5f, 80),
+                kiwi = new Product("Kiwi", "", new ArrayList<>(
                 Arrays.asList(
-                        new Variant("500g",80),
-                        new Variant("1kg",160))
-        ));
+                        new Variant("500g", 96),
+                        new Variant("1Kg", 180)
+                ))), surfExcel = new Product("Surf Excel", " ", new ArrayList<>(
+                Collections.singletonList(new Variant("1kg", 180))));
 
-        //      Add them in a List
-        List<Product> products = new ArrayList<>(
-                Arrays.asList(apple,kiwi));
+        Cart cart = new Cart();
+        cart.add(orange, 2.5f);
+        cart.add(kiwi, kiwi.variants.get(1));
+        cart.add(kiwi, kiwi.variants.get(1));
+        cart.add(kiwi, kiwi.variants.get(1));
+        cart.add(surfExcel , surfExcel.variants.get(0));
+        cart.add(surfExcel , surfExcel.variants.get(0));
 
-        //      Printing the list
-        System.out.println(products);
+        System.out.println(cart);
 
+        cart.remove(orange);
+        System.out.println();
+        System.out.println(cart);
 
+        cart.decrement(surfExcel , surfExcel.variants.get(0));
+        System.out.println();
+        System.out.println(cart);
+
+        cart.decrement(surfExcel , surfExcel.variants.get(0));
+        System.out.println();
+        System.out.println(cart);
 
     }
-
 }
+
+
