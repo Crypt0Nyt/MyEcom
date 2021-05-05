@@ -30,6 +30,7 @@ public class Cart {
     //    adding variant based product
     public void add(Product product, Variant variant) {
 
+        // Key for VBD concatenating product and variant name
         String key = product.name + " " + variant.name;
 
         if(cartItems.containsKey(key)){
@@ -57,7 +58,7 @@ public class Cart {
         }
 
     }
-
+    // Remove WBP from the cart
     private void removeWBP(Product product) {
         //    Update cart summary
         total -= cartItems.get(product.name).cost();
@@ -65,7 +66,7 @@ public class Cart {
         cartItems.remove(product.name);
     }
 
-    //    removing variant based product
+    //    removing all the variants of Variants based product
     public void removeAllVAriantsOfVBP(Product product) {
         for (Variant variant : product.variants) {
             String key = product.name + " " + variant.name;
@@ -81,7 +82,7 @@ public class Cart {
     }
 
 //    Decrement quantity
-    public  void decrement(Product product, Variant variant){
+    public  void decrementVBP(Product product, Variant variant){
         String key = product.name + " " + variant.name;
 
 //        Update qty
@@ -99,7 +100,6 @@ public class Cart {
 
     @Override
     public String toString() {
-        return cartItems.values()
-                + String.format( "\ntotal %f items (Rs. %f)", noOfItems , total);
+        return cartItems.values() + "\n" + "Total Items = " + noOfItems + "(" + total + ")";
     }
 }

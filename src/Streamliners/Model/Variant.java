@@ -11,9 +11,6 @@ public class Variant {
 
     @Override
     public String toString() {
-        return "\nVariant{" +
-                "name='" + name + '\'' +
-                ", price=" + price +
-                '}';
+        return String.format("%s @ Rs. %s",name,price );
     }
 }

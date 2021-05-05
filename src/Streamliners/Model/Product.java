@@ -14,6 +14,7 @@ public class Product {
 //    Variants Based
     public List<Variant> variants;
 
+
     public Product(String name, String imageURL, float minQty, float pricePerKg) {
         type = ProductType.TYPE_WB;
         this.name = name;
@@ -29,29 +30,21 @@ public class Product {
         this.variants = variants;
     }
 
+    public void editProductName(String name, CartItem cartItem){
+        if(cartItem != null)
+            cartItem.name = name;
+        this.name = name;
+    }
 
     @Override
     public String toString() {
-      StringBuilder builder = new StringBuilder();
+        StringBuilder builder = new StringBuilder();
 
-      if(type == ProductType.TYPE_WB)
-          builder.append("WB { ");
-      else
-          builder.append("VB { ");
-
-      builder.append("name = ").append(name);
-
-      if(type == ProductType.TYPE_WB) {
-          builder.append(", minQty = ").append(minQty);
-          builder.append(", pricePerKg = ").append(pricePerKg);
-      }
-      else {
-          builder.append("VB { ");
-          builder.append("Variants = ").append(variants);
-      }
-      builder.append(" } ");
-
-      return builder.toString();
-
+        if(type == ProductType.TYPE_WB) {
+            return name + " @Rs " + pricePerKg + "/Kg";
+        }
+        else{
+            return name + " " + variants;
+        }
     }
 }

@@ -5,6 +5,7 @@ public class CartItem {
     String name;
     private float pricePerKg;
     float unitPrice, qty;
+    int type;
 
     public CartItem(String name, float unitPrice, float qty) {
 
